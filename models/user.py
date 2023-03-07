@@ -2,7 +2,7 @@
 """This module defines a class User"""
 from models.base_model import BaseModel
 from sqlalchemy import Column, Integer, String
-from models. base import Basemodel, Base
+
 
 
 class User(BaseModel):
