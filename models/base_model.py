@@ -112,8 +112,3 @@ class BaseModel:
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
 
-
-def delete(self):
-    "Borrando la actual instancia de storage"
-    from models import storage
-    storage.delete(self)
