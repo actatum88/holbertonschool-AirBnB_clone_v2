@@ -99,8 +99,7 @@ class test_fileStorage(unittest.TestCase):
         new = BaseModel()
         _id = new.to_dict()['id']
         for key in storage.all().keys():
-            temp = key
-        self.assertEqual(temp, 'BaseModel' + '.' + _id)
+            self.assertEqual(key, 'BaseModel' + '.' + _id)
 
     def test_storage_var_created(self):
         """ FileStorage object storage created """
