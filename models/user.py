@@ -9,6 +9,7 @@ from models.review import Review
 from sqlalchemy import Column, String
 from models.base_model import BaseModel, Base
 
+
 class User(BaseModel, Base):
     """This class defines a user by various attributes"""
     __tablename__ = "users"
@@ -16,8 +17,9 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128), nullable=False)
     last_name = Column(String(128), nullable=False)
-# Estas moficaciones acontinuacion provienen del req del task 8. DBStorage - Place
+# Estas moficaciones acontinuacion provienen
+# del req del task 8. DBStorage - Place
     places = relationship("Place", cascade='all, delete, delete-orphan',
-                        backref="user")
+                          backref="user")
     reviews = relationship("Review", cascade='all, delete, delete-orphan',
-                        backref="user")
+                           backref="user")
