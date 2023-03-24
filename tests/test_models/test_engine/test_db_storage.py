@@ -81,6 +81,9 @@ class TestDBStorage(unittest.TestCase):
         salida = self.query.fetchall()
         self.assertEqual(len(salida), 1)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 62d3c15de7816a4b9902a483473fe61ed37e0360
 if __name__ == "__main__":
     unittest.main()
