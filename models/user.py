@@ -1,16 +1,5 @@
 #!/usr/bin/python3
 """This module defines a class User"""
-from models.base_model import BaseModel
-
-
-class User(BaseModel):
-    """This class defines a user by various attributes"""
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
-#!/usr/bin/python3
-"""This module defines a class User"""
 from sqlalchemy.ext.declarative import declarative_base
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String
@@ -20,6 +9,7 @@ from models.review import Review
 from sqlalchemy import Column, String
 from models.base_model import BaseModel, Base
 
+
 class User(BaseModel, Base):
     """This class defines a user by various attributes"""
     __tablename__ = "users"
@@ -27,8 +17,9 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128), nullable=False)
     last_name = Column(String(128), nullable=False)
-# Estas moficaciones acontinuacion provienen del req del task 8. DBStorage - Place
+# Estas moficaciones acontinuacion provienen
+# del req del task 8. DBStorage - Place
     places = relationship("Place", cascade='all, delete, delete-orphan',
-                        backref="user")
+                          backref="user")
     reviews = relationship("Review", cascade='all, delete, delete-orphan',
-                        backref="user")
+                           backref="user")
