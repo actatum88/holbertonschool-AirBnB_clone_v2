@@ -14,7 +14,7 @@ def hello():
 def hello_olleh():
     return 'HBNB'
 
-
+@app.route('/c/')
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_confuse(text):
     return "C " + text.replace("_", " ")

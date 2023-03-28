@@ -15,13 +15,15 @@ def hello_olleh():
     return 'HBNB'
 
 
+@app.route('/c/')
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_confuse(text):
     return "C " + text.replace("_", " ")
 
 
+@app.route('/python/')
 @app.route('/python/<text>', strict_slashes=False)
-def python_iscool(text):
+def python_iscool(text='is cool'):
     return "Python " + text.replace("_", " ")
 
 
