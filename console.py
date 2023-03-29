@@ -112,41 +112,32 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, args):
-        """
-        Creates a new object of any class and saves it to the storage.
-        """
-        if not args:
+    def do_create(self, line):
+        """Usage: create <Class name> <param 1> <param 2> <param 3>..."""
+        if not line:
             print("** class name missing **")
             return
-        elif args.split()[0] not in HBNBCommand.classes:
+        args = line.split()
+        if args[0] not in HBNBCommand.classes.keys():
             print("** class doesn't exist **")
             return
-
-        # Create a new instance of the class
-        new_instance = HBNBCommand.classes[args.split()[0]]()
-
-        # Set instance attributes using key-value pairs in the arguments
-        for arg in args.split()[1:]:
-            key_value = arg.partition("=")
-            key = key_value[0]
-            value = key_value[2]
-
-            # Convert value to the appropriate type
-            if value[0] == '"' and value[-1] == '"':
-                value = value[1:-1].replace('_', ' ')
-            elif '.' in value:
-                value = float(value)
+        kwargs = {}
+        for param in range(1, len(args)):
+            ky, vl = args[param].split("=")
+            if vl[0] == '"':
+                vl = vl.replace('_', ' ').strip('"')
             else:
-                value = int(value)
-            setattr(new_instance, key, value)
-
-        # Add the new instance to the storage and save the changes
-        storage.new(new_instance)
-        storage.save()
-
-        # Print the ID of the new instance
-        print(new_instance.id)
+                try:
+                    vl = eval(vl)
+                except (SyntaxError, NameError):
+                    continue
+            kwargs[ky] = vl
+        if len(kwargs) == 0:
+            obj = eval(args[0])()
+        else:
+            obj = eval(args[0])(**kwargs)
+        print(obj.id)
+        obj.save()
 
     def help_create(self):
         """ Help information for the create method """
