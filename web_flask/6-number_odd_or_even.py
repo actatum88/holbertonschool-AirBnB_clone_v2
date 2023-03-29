@@ -41,7 +41,9 @@ def num_temp(n):
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def num_oddeven(n):
     if isinstance(n, int):
-        return render_template('6-number_odd_or_even.html', n=n, even_or_odd='even' if n % 2 == 0 else 'odd')
+        return render_template('6-number_odd_or_even.html',
+                               n=n,
+                               even_or_odd='even' if n % 2 == 0 else 'odd')
 
 
 if __name__ == '__main__':
