@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+
+
 """
 Starts a Flask web application with a list of states sorted by name
 """
@@ -15,7 +17,8 @@ app.url_map.strict_slashes = False
 @app.route('/states_list')
 def states_list():
     """
-    Display a HTML page with a list of all State objects present in DBStorage sorted by name
+    Display a HTML page with a list of all
+    State objects present in DBStorage sorted by name
     """
     states = storage.all(State).values()
     states = sorted(states, key=lambda state: state.name)
