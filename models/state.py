@@ -18,14 +18,16 @@ class State(BaseModel, Base):
     else:
         name = ''
 
-        @property
-        def cities(self):
-            """
-                getter method, returns list of City objs from storage
-                linked to the current State
-            """
-            city_list = []
-            for city in models.storage.all("City").values():
-                if city.state_id == self.id:
-                    city_list.append(city)
-            return city_list
+    @property
+    def cities(self):
+        """
+        Return the list of City objects from storage linked to the current State
+        """
+        from models import storage
+        from models.city import City
+        cities = []
+        for city in storage.all(City).values():
+            if city.state_id == self.id:
+                cities.append(city)
+        return cities
+
